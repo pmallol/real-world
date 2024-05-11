@@ -1,16 +1,23 @@
 <script setup>
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
+import axios from 'axios'
 import EventCard from '@/components/EventCard.vue'
 
-const events = ref([
-  { id: '1', title: 'Vue.js Global Summit', date: 'September 2021' },
-  { id: '2', title: 'Vue.js London', date: 'October 2021' },
-  { id: '3', title: 'Vue.js Amsterdam', date: 'February 2022' }
-])
+const events = ref(null)
+
+onMounted(() => {
+  axios.get('https://my-json-server.typicode.com/pmallol/real-world/events')
+    .then(response => {
+      events.value = response.data
+    })
+    .catch(error => {
+      console.error('There was an error!', error)
+    })
+})
 </script>
 
 <template>
-  <h1>Vue.js Events</h1>
+  <h1>Events for Good</h1>
   <div class="events">
     <EventCard v-for="event in events" :key="event.id" :event="event"/>
   </div>
