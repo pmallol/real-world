@@ -1,9 +1,9 @@
 <script setup>
-import {ref} from 'vue'
-const event = ref({
-  title: 'Vue.js Global Summit',
-  date: 'September 2021',
-  location: 'Online'
+defineProps({
+  event: {
+    type: Object,
+    required: true
+  }
 })
 </script>
 
