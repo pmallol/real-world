@@ -18,11 +18,9 @@ onMounted(() => {
 
 <template>
   <h1>Events for Good</h1>
-  <RouterLink to="/event/123">
     <div class="events">
       <EventCard v-for="event in events" :key="event.id" :event="event" />
     </div>
-  </RouterLink>
 </template>
 
 <style scoped>
